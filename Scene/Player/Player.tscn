@@ -1,16 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://f45tg26w61c"]
+[gd_scene load_steps=17 format=3 uid="uid://f45tg26w61c"]
 
 [ext_resource type="Script" path="res://Scene/PLayer/Player.gd" id="1_ucck1"]
 [ext_resource type="Texture2D" uid="uid://bik2qmsxvj4uv" path="res://Art/Character/leg-animation.png" id="1_y52ml"]
 [ext_resource type="Texture2D" uid="uid://dpknn7obp3fba" path="res://Art/Character/dinobody.png" id="3_u4pu5"]
 [ext_resource type="Texture2D" uid="uid://dtg53oea5ms1q" path="res://Art/Character/pixil-frame-0.png" id="4_7c10t"]
-[ext_resource type="Texture2D" uid="uid://iymu5km0dfq3" path="res://Art/Weapons/7.png" id="5_32wmt"]
-[ext_resource type="Texture2D" uid="uid://blwlj1608vqtr" path="res://Art/Weapons/3.png" id="5_u4rn4"]
-[ext_resource type="Texture2D" uid="uid://dkk5xujstrm32" path="res://Art/Weapons/11.png" id="6_4c5hk"]
 [ext_resource type="Texture2D" uid="uid://bw4vwyagb8qsn" path="res://light.png" id="8_8f82p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3tkc"]
-radius = 11.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egyd1"]
+size = Vector2(6, 14)
 
 [sub_resource type="Animation" id="Animation_4i8m3"]
 resource_name = "Idle"
@@ -109,28 +106,9 @@ position = Vector2(-6, 0)
 rotation = -1.5708
 texture = ExtResource("4_7c10t")
 
-[node name="MachineGun" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(9, 4)
-rotation = -1.5708
-texture = ExtResource("5_u4rn4")
-
-[node name="Sniper" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(10, 3)
-rotation = -1.5708
-texture = ExtResource("6_4c5hk")
-
-[node name="HandGun" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(8, 4)
-rotation = -1.5708
-texture = ExtResource("5_32wmt")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1, 0)
-shape = SubResource("CircleShape2D_r3tkc")
+position = Vector2(8, 1)
+shape = SubResource("RectangleShape2D_egyd1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -142,10 +120,8 @@ tree_root = SubResource("AnimationNodeStateMachine_5qy0g")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 
-[node name="BulletSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(18, 4)
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(-0.7, -0.7)
+enabled = false
 color = Color(1, 1, 1, 0.85098)
 texture = ExtResource("8_8f82p")

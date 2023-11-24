@@ -8,16 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="6_1v8we"]
 
 [node name="Main" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMap" parent="." instance=ExtResource("2_tnk3u")]
+z_index = -10
+position = Vector2(-181, -112)
 
 [node name="Player" parent="." instance=ExtResource("1_n7ygp")]
 position = Vector2(-179, 272)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="TileMap" parent="." instance=ExtResource("2_tnk3u")]
-z_index = -5
-position = Vector2(-0.0881767, 23.1745)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-179, 272)
@@ -46,4 +47,5 @@ position = Vector2(115, 127)
 position = Vector2(252, 237)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)

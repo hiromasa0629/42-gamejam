@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dbgf3blnb8h2w"]
+[gd_scene load_steps=33 format=3 uid="uid://dbgf3blnb8h2w"]
 
 [ext_resource type="Texture2D" uid="uid://3tim5g5ylkfh" path="res://Art/TileSet/Grass.png" id="1_sn7sv"]
 [ext_resource type="Texture2D" uid="uid://dk5h7d2ajdrw8" path="res://Art/TileSet/Hills.png" id="2_sxv7p"]
@@ -1214,6 +1214,11 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y4l7j"]
+vertices = PackedVector2Array(-14, -62.5, 152.5, -57.5, 153.5, 152.5, -101, 157, -98, -63)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-98, -63, -101, 157, 153.5, 152.5, 152.5, -57.5, -14, -62.5)])
+
 [node name="TileMap" type="TileMap"]
 position = Vector2(226, -203)
 scale = Vector2(2, 2)
@@ -1238,6 +1243,7 @@ layer_2/tile_data = PackedInt32Array()
 script = ExtResource("4_urbt3")
 
 [node name="CloudPath" type="Path2D" parent="."]
+position = Vector2(70, 0)
 curve = SubResource("Curve2D_ke4q0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CloudPath"]
@@ -1249,6 +1255,10 @@ wait_time = 8.0
 autostart = true
 
 [node name="CloudFreePoint" type="Marker2D" parent="."]
-position = Vector2(1343, 212)
+position = Vector2(983, 378)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(2, 172.5)
+navigation_polygon = SubResource("NavigationPolygon_y4l7j")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
