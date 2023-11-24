@@ -7,8 +7,10 @@ extends CharacterBody2D
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var nav_agent = $NavigationAgent2D
 
+var is_in_range: bool = false
+var is_light_on: bool = false
+
 var target: CharacterBody2D
-var is_chasing : bool = false
 
 func _ready():
 	await get_tree().process_frame
@@ -21,7 +23,7 @@ func _physics_process(delta):
 	target = get_tree().get_nodes_in_group("Player")[0]
 	look_at(target.global_position)
 
-	if (is_chasing):
+	if (is_light_on and is_in_range):
 		var direction = global_position.direction_to(nav_agent.get_next_path_position())
 		velocity = direction * move_speed
 		move_and_slide()
@@ -40,8 +42,11 @@ func _on_timer_timeout():
 	make_path()
 	
 func handle_player_spotted():
-	if (is_chasing == false):
-		is_chasing = true
-	elif (is_chasing == true):
-		is_chasing = false
+	is_light_on = !is_light_on
+
+func handle_player_entered():
+	is_in_range = true
+
+func handle_player_exited():
+	is_in_range = false
 	

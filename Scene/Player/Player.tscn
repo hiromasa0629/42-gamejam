@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://f45tg26w61c"]
+[gd_scene load_steps=18 format=3 uid="uid://f45tg26w61c"]
 
 [ext_resource type="Script" path="res://Scene/PLayer/Player.gd" id="1_ucck1"]
 [ext_resource type="Texture2D" uid="uid://bik2qmsxvj4uv" path="res://Art/Character/leg-animation.png" id="1_y52ml"]
@@ -87,6 +87,8 @@ states/Walk/position = Vector2(443.23, 100.016)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_oel8b"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_rqcmt"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_q2jv8")]
 graph_offset = Vector2(-337.638, -12.975)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tugb5"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ucck1")
 
@@ -125,3 +127,12 @@ scale = Vector2(-0.7, -0.7)
 enabled = false
 color = Color(1, 1, 1, 0.85098)
 texture = ExtResource("8_8f82p")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(25, 17)
+shape = SubResource("RectangleShape2D_tugb5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

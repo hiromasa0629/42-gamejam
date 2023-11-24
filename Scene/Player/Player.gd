@@ -37,15 +37,13 @@ func pick_new_state():
 		
 	
 func switch_torch_light():
+	tourch_light.enabled = !tourch_light.enabled
 	emit_signal("playerspotted")
-	if (tourch_light.enabled == true):
-		tourch_light.enabled = false
-	elif(tourch_light.enabled == false):
-		tourch_light.enabled = true
 		
-		
-		
-		
-		
-		
-		
+func _on_area_2d_body_entered(body):
+	if (body.is_in_group("Enemy")):
+		body.handle_player_entered()
+
+func _on_area_2d_body_exited(body):
+	if (body.is_in_group("Enemy")):
+		body.handle_player_exited()
