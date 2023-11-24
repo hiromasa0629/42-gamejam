@@ -6,38 +6,28 @@ extends CharacterBody2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var nav_agent = $NavigationAgent2D
-@onready var raycast_up = $RayCast2DUp
-#@onready var raycast_up = $ShapeCast2D
-@onready var raycast_down = $RayCast2DDown
 
-var bullet = preload("res://Scene/Bullet/HGBullet.tscn")
-var can_fire = true
-var fire_rate : float = 1
-var in_range : bool = false
+var is_in_range: bool = false
+var is_light_on: bool = false
+
 var target: CharacterBody2D
 
 func _ready():
 	await get_tree().process_frame
 	target = get_tree().get_nodes_in_group("Player")[0]
+	target.connect("playerspotted", handle_player_spotted)
 	make_path()
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	target = get_tree().get_nodes_in_group("Player")[0]
 	look_at(target.global_position)
-	#rotation = velocity.angle()
-	if (raycast_up.is_colliding() and raycast_up.get_collider().is_in_group("Player")):
-		#and raycast_down.is_colliding() and raycast_down.get_collider().is_in_group("Player")):
-		in_range = true
-		if (can_fire == true):
-			fire()
-	if (in_range == false):
+
+	if (is_light_on and is_in_range):
 		var direction = global_position.direction_to(nav_agent.get_next_path_position())
 		velocity = direction * move_speed
 		move_and_slide()
 	pick_new_state()
-	in_range = false
-
 
 func make_path():
 	nav_agent.target_position = target.global_position
@@ -51,11 +41,12 @@ func pick_new_state():
 func _on_timer_timeout():
 	make_path()
 	
-func fire():
-	var bullet_instance = bullet.instantiate()
-	bullet_instance.position = $BulletSpawnPoint.global_position
-	bullet_instance.target = target.position
-	get_tree().get_root().add_child(bullet_instance)
-	can_fire = false
-	await(get_tree().create_timer(fire_rate).timeout)
-	can_fire = true
+func handle_player_spotted():
+	is_light_on = !is_light_on
+
+func handle_player_entered():
+	is_in_range = true
+
+func handle_player_exited():
+	is_in_range = false
+	
