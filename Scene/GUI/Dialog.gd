@@ -5,7 +5,7 @@ const CHAR_READ_RATE = 0.05
 @onready var textbox_container = $TextBoxContainer
 @onready var start_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/StartSymbol
 @onready var end_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/EndSymbol
-@onready var textbox = $TextBoxContainer/MarginContainer/HBoxContainer/Text
+@onready var textbox = $TextBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/Text
 
 enum State {
 	READY,
@@ -23,7 +23,7 @@ func _ready():
 	queue_text("Hi, nice to meet you")
 	queue_text("Why is the scale weird")
 	queue_text("what should I do to fix it omg!")
-	queue_text("Long text will ruin the container and scale it up and up and up, how can I fix this also omg, omg, omg, long text, no long text or dialog")
+	queue_text("Long text will ruin the container and scale it up and up and up, how can I fix this also omg, omg, omg, long text, no long text or dialog hello world hello world hello world hello world hello world hello world hello wold")
 	queue_text("Come again bye bye")
 
 func _process(delta):
