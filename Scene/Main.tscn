@@ -21,6 +21,7 @@ position = Vector2(-0.0881767, 23.1745)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-179, 272)
+zoom = Vector2(4, 4)
 limit_top = 0
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ihmbj")]
