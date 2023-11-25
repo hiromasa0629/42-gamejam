@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ldoadeeqxg0"
-path="res://.godot/imported/Chandeliers.png-9605b5fed2b1d11ec980fa3492075f07.ctex"
+uid="uid://cdh8hrslixxtu"
+path="res://.godot/imported/satyr-eyes-white.png-3d4f51e8fe470b7fcb208fa042169070.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Fires/Chandeliers.png"
-dest_files=["res://.godot/imported/Chandeliers.png-9605b5fed2b1d11ec980fa3492075f07.ctex"]
+source_file="res://Art/Actors/Ghost/satyr-eyes-white.png"
+dest_files=["res://.godot/imported/satyr-eyes-white.png-3d4f51e8fe470b7fcb208fa042169070.ctex"]
 
 [params]
 
