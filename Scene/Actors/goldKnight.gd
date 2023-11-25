@@ -34,3 +34,10 @@ func update_animation_params(move_input: Vector2):
 			$WalkSFX.stop()
 	
 		
+func handle_toggle_bubble_e():
+	bubble_sfx.play()
+	print($ESpeedBubble.visible)
+	$ESpeedBubble.visible = !$ESpeedBubble.visible
+#		$ESpeedBubble.show()
+#	else:
+#		$ESpeedBubble.hide()

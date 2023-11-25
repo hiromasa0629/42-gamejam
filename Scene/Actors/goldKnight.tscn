@@ -257,6 +257,7 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="ESpeedBubble" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(6, -24)
 texture = ExtResource("3_fdnfs")
 
