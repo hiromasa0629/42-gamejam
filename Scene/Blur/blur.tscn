@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp0rrfwq3bjap"]
+
+[ext_resource type="Shader" path="res://Scene/Blur/blur.gdshader" id="1_5wjp4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cufa"]
+shader = ExtResource("1_5wjp4")
+shader_parameter/size_x = 0.008
+shader_parameter/size_y = 0.008
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0pmmb"]
+
+[node name="Blur" type="CanvasLayer"]
+
+[node name="BlurShader" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_1cufa")
+offset_right = 1908.0
+offset_bottom = 1084.0
+texture = SubResource("CanvasTexture_0pmmb")

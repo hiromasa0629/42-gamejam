@@ -17,7 +17,6 @@ func _physics_process(delta):
 	
 #	rotate(get_angle_to(get_global_mouse_position()))
 	look_at(get_global_mouse_position())
-	
 	if (Input.is_action_just_pressed("left_click") and can_throw):
 		throw()
 	if (Input.is_action_just_pressed("SpaceBar")):
