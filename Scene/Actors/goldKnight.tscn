@@ -229,7 +229,6 @@ states/Walk/position = Vector2(490, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fyd3h"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kyde6"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_yc2xi")]
 
 [node name="goldKnight" type="CharacterBody2D"]
-position = Vector2(170, 130)
 script = ExtResource("1_u8tox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
