@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmtcpxms8rcud"]
+[gd_scene load_steps=50 format=3 uid="uid://bmtcpxms8rcud"]
 
 [ext_resource type="Texture2D" uid="uid://cda404sk1lq8c" path="res://Art/Actors/Ghost/satyr-Sheet.png" id="1_ppc2p"]
 [ext_resource type="Script" path="res://Scene/Actors/ghost.gd" id="3_aumu7"]
+[ext_resource type="Texture2D" uid="uid://cdh8hrslixxtu" path="res://Art/Actors/Ghost/satyr-eyes-white.png" id="3_rg2ki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lqrm"]
 atlas = ExtResource("1_ppc2p")
@@ -82,10 +83,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GhostEyes2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -99,7 +112,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -116,7 +129,24 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_kxis6"]
+resource_name = "idle_eyes"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GhostEyes2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +163,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -150,7 +180,24 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_ryxsl"]
+resource_name = "run_eyes"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GhostEyes2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -167,7 +214,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -183,7 +230,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("GhostFull2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -193,28 +240,51 @@ tracks/0/keys = {
 "values": [27, 28, 29, 30, 31, 32, 33, 34, 35]
 }
 
+[sub_resource type="Animation" id="Animation_qevya"]
+resource_name = "vaporize_eyes"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GhostEyes2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 33, 34]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgv0k"]
 _data = {
 "RESET": SubResource("Animation_d36v3"),
 "falling": SubResource("Animation_eo5uc"),
 "idle": SubResource("Animation_o5r5x"),
+"idle_eyes": SubResource("Animation_kxis6"),
 "jumping": SubResource("Animation_jtw44"),
 "run": SubResource("Animation_5ofyn"),
+"run_eyes": SubResource("Animation_ryxsl"),
 "turn_white": SubResource("Animation_e1jjw"),
-"vaporize": SubResource("Animation_p83ri")
+"vaporize": SubResource("Animation_p83ri"),
+"vaporize_eyes": SubResource("Animation_qevya")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gje8"]
-animation = &"idle"
+animation = &"idle_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fup1e"]
-animation = &"idle"
+animation = &"idle_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_haaan"]
-animation = &"idle"
+animation = &"idle_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pa1ru"]
-animation = &"idle"
+animation = &"idle_eyes"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mcn07"]
+animation = &"idle_eyes"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_02l7t"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_6gje8")
@@ -225,19 +295,21 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_haaan")
 blend_point_2/pos = Vector2(0, -1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_pa1ru")
 blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_mcn07")
+blend_point_4/pos = Vector2(0, 1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6ehi"]
-animation = &"vaporize"
+animation = &"vaporize_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0bwa"]
-animation = &"vaporize"
+animation = &"vaporize_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_67s7y"]
-animation = &"vaporize"
+animation = &"vaporize_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v2vjq"]
-animation = &"vaporize"
+animation = &"vaporize_eyes"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vx801"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_l6ehi")
@@ -251,16 +323,16 @@ blend_point_3/pos = Vector2(-1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sortk"]
-animation = &"run"
+animation = &"run_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wjcsw"]
-animation = &"run"
+animation = &"run_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_deoe7"]
-animation = &"run"
+animation = &"run_eyes"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hjvey"]
-animation = &"run"
+animation = &"run_eyes"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_40pe5"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_sortk")
@@ -303,15 +375,20 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 position = Vector2(1, -1)
 script = ExtResource("3_aumu7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GhostFull2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ppc2p")
+hframes = 9
+vframes = 5
+
+[node name="GhostEyes2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_rg2ki")
 hframes = 9
 vframes = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_wxhh5")
-frame_progress = 0.258894
+frame_progress = 0.271814
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0.5)
@@ -326,6 +403,14 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_jhbub")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.228402, -0.240175)
+parameters/Vaporize/blend_position = Vector2(0, 0)
+parameters/Walk/blend_position = Vector2(-0.00591713, 0.991266)
+
+[node name="AnimationTreeEyes" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jhbub")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Idle/blend_position = Vector2(-0.228402, -0.240175)
 parameters/Vaporize/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(-0.00591713, 0.991266)
