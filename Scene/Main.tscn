@@ -16,9 +16,10 @@ shader = ExtResource("3_u0ccl")
 shader_parameter/size_x = 0.008
 shader_parameter/size_y = 0.008
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("torch")]
 y_sort_enabled = true
 script = ExtResource("1_56sv3")
+torch = NodePath("Torch")
 
 [node name="Torch" parent="." instance=ExtResource("10_2fpcg")]
 position = Vector2(56, 206)
@@ -66,3 +67,15 @@ visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("9_lqpmg")]
 visible = false
+
+[node name="Enemy2" parent="." instance=ExtResource("3_ihmbj")]
+position = Vector2(-230, 224)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_ihmbj")]
+position = Vector2(-190, 354)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_ihmbj")]
+position = Vector2(211, 343)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_ihmbj")]
+position = Vector2(-396, 158)

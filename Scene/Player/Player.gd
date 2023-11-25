@@ -28,6 +28,8 @@ func _physics_process(delta):
 	if (finish_tourch and Input.is_action_just_pressed("E")):
 		finish_tourch.win()
 		tourch_light.enabled = false
+		update_animation_params(Vector2.ZERO)
+		return
 	if (Input.is_action_just_pressed("left_click") and can_throw):
 		throw()
 	if (Input.is_action_just_pressed("SpaceBar")):

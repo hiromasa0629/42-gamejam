@@ -99,9 +99,9 @@ func update_animation_params(move_input: Vector2):
 		animation_tree.set("parameters/Idle/blend_position", move_input)
 		
 
-func activate_vaporize(move_input: Vector2):
+func play_death():
 	state_machine.travel("Vaporize")
-	animation_tree.set("parameters/Vaporize/blend_position", move_input)
+	animation_tree.set("parameters/Vaporize/blend_position", Vector2(0,0))
 	
 func handle_animation(input_direction, target, i):
 	if (input_direction.x < 0):

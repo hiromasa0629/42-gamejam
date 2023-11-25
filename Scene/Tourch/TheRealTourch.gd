@@ -5,6 +5,8 @@ extends Node2D
 
 var player = null
 
+signal winsignal
+
 func _ready():
 	animation.animation = "blue_out"
 	animation.play()
@@ -27,5 +29,7 @@ func _on_area_2d_body_exited(body):
 func win():
 	light.enabled = true
 	player.handle_toggle_bubble_e(self)
+	player.set_physics_process(false)
 	animation.animation = "blue_fire"
+	emit_signal("winsignal")
 	
