@@ -6,6 +6,7 @@ const CHAR_READ_RATE = 0.05
 @onready var start_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/StartSymbol
 @onready var end_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/EndSymbol
 @onready var textbox = $TextBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/Text
+@onready var audio_stream = $AudioStreamPlayer2D
 
 enum State {
 	READY,
@@ -34,6 +35,7 @@ func _process(delta):
 		State.READING:
 			if Input.is_action_just_pressed("ui_accept"):
 				textbox.visible_ratio = 1.0
+				audio_stream.stop()
 				tween.stop()
 				end_symbol.text = "v"
 				change_state(State.FINISHED)
@@ -65,6 +67,7 @@ func display_text():
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.connect("finished", on_tween_finished)
+	audio_stream.play()
 	tween.tween_property(textbox, 'visible_ratio', 1.0, len(next_text) * CHAR_READ_RATE)
 	#tween.play()
 	
@@ -81,4 +84,5 @@ func change_state(next_state):
 
 func on_tween_finished():
 	end_symbol.text = "v"
+	audio_stream.stop()
 	change_state(State.FINISHED)

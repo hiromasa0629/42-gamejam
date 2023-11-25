@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://Scene/Blur/blur.gdshader" id="3_u0ccl"]
 [ext_resource type="PackedScene" uid="uid://dsje5ybodxt03" path="res://Scene/Cloud/cloud.tscn" id="4_m6ku7"]
 [ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="6_1v8we"]
-[ext_resource type="PackedScene" uid="uid://dp0rrfwq3bjap" path="res://Scene/Blur/Blur.tscn" id="8_0r7bx"]
+[ext_resource type="PackedScene" uid="uid://dp0rrfwq3bjap" path="res://Scene/Blur/blur.tscn" id="8_0r7bx"]
 [ext_resource type="PackedScene" uid="uid://3lgtktntrtmd" path="res://Scene/GUI/GameOverLabel.tscn" id="9_lqpmg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2tth"]

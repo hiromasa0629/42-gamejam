@@ -22,7 +22,6 @@ func _process(delta):
 		tween.tween_property(blur_rect.material, 'shader_parameter/size_x', 0.017, 0.7)
 		tween.tween_property(blur_rect.material, 'shader_parameter/size_y', 0.017, 0.7)
 		
-#		blur_rect.get_material()
 	pass
 
 func on_tween_finished():
