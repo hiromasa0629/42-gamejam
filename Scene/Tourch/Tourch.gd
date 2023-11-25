@@ -5,6 +5,7 @@ extends Sprite2D
 
 var target_position: Vector2 = Vector2.ZERO
 var is_colliding : bool = false
+var body_queue = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,8 +28,16 @@ func _on_timer_timeout():
 	tween.tween_property(light, 'energy', 0, 1.2)
 
 func on_tween_finished():
+	while (!body_queue.is_empty()):
+		var body = body_queue.pop_front()
+		body.tourch_exited(self)
 	queue_free()
 
 func _on_collided_body_entered(body):
 	if (!body.name == "Player"):
 		is_colliding = true
+
+func _on_enemy_detection_body_entered(body):
+	if (body.is_in_group("Enemy")):
+		body_queue.push_back(body)
+		body.tourch_entered(self)

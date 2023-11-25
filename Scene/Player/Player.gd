@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 150
+@export var move_speed: float = 120
 @export var matches_left: int = 10
 
 @onready var tourch_light = $Area2D/PointLight2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
-var tourch = preload("res://Scene/Tourch.tscn")
+var tourch = preload("res://Scene/Tourch/Tourch.tscn")
 var can_throw = true
 
 signal playerspotted
