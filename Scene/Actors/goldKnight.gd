@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var bubble_sfx = $BubbleSFX
 
+signal is_close_to_level
+
 func _ready():
 	update_animation_params(starting_direction)
 	
@@ -37,5 +39,6 @@ func update_animation_params(move_input: Vector2):
 		
 func handle_toggle_bubble_e():
 	bubble_sfx.play()
-	print($ESpeedBubble.visible)
 	$ESpeedBubble.visible = !$ESpeedBubble.visible
+	emit_signal("is_close_to_level")
+	

@@ -14,6 +14,10 @@ config/name="V1"
 run/main_scene="res://Scene/Main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 
+[autoload]
+
+global="*res://Scene/Global.gd"
+
 [display]
 
 window/size/viewport_width=1920
