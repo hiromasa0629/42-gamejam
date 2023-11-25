@@ -9,8 +9,9 @@ extends CharacterBody2D
 
 func _ready():
 	update_animation_params(starting_direction)
+	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -38,6 +39,3 @@ func handle_toggle_bubble_e():
 	bubble_sfx.play()
 	print($ESpeedBubble.visible)
 	$ESpeedBubble.visible = !$ESpeedBubble.visible
-#		$ESpeedBubble.show()
-#	else:
-#		$ESpeedBubble.hide()

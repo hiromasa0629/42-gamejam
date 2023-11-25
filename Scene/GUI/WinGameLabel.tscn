@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddo64k16orxqv"]
+
+[ext_resource type="FontFile" uid="uid://bmylpjhbkpqq3" path="res://Font/PixelFont.ttf" id="1_7pw3l"]
+
+[node name="WinGame" type="CanvasLayer"]
+
+[node name="WinGame" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -33.5
+offset_right = 126.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("1_7pw3l")
+theme_override_font_sizes/font_size = 184
+text = "The Village is Saved"

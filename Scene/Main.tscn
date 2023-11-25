@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://f45tg26w61c" path="res://Scene/Player/Player.tscn" id="1_n7ygp"]
 [ext_resource type="PackedScene" uid="uid://dbgf3blnb8h2w" path="res://Scene/TileMap/Tile_map.tscn" id="2_tnk3u"]
 [ext_resource type="PackedScene" uid="uid://dk5j6pg02e8n2" path="res://Scene/Enemy/Enemy.tscn" id="3_ihmbj"]
-[ext_resource type="Shader" path="res://Scene/Blur/blur.gdshader" id="3_u0ccl"]
 [ext_resource type="PackedScene" uid="uid://dsje5ybodxt03" path="res://Scene/Cloud/cloud.tscn" id="4_m6ku7"]
 [ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="6_1v8we"]
 [ext_resource type="PackedScene" uid="uid://dp0rrfwq3bjap" path="res://Scene/Blur/blur.tscn" id="8_0r7bx"]
 [ext_resource type="PackedScene" uid="uid://3lgtktntrtmd" path="res://Scene/GUI/GameOverLabel.tscn" id="9_lqpmg"]
 [ext_resource type="PackedScene" uid="uid://by51f2wg82jgi" path="res://Scene/Tourch/TheRealTourch.tscn" id="10_2fpcg"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2tth"]
 shader = ExtResource("3_u0ccl")
@@ -17,6 +17,7 @@ shader_parameter/size_x = 0.008
 shader_parameter/size_y = 0.008
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("torch")]
+
 y_sort_enabled = true
 script = ExtResource("1_56sv3")
 torch = NodePath("Torch")
@@ -35,7 +36,6 @@ position = Vector2(-29, 25)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-material = SubResource("ShaderMaterial_w2tth")
 position = Vector2(-29, 25)
 zoom = Vector2(3, 3)
 limit_top = 0
