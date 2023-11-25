@@ -87,7 +87,7 @@ states/Walk/position = Vector2(443.23, 100.016)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_oel8b"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_rqcmt"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_q2jv8")]
 graph_offset = Vector2(-337.638, -12.975)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tugb5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yan7h"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ucck1")
@@ -122,17 +122,19 @@ tree_root = SubResource("AnimationNodeStateMachine_5qy0g")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(-0.7, -0.7)
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(24, 24)
+shape = SubResource("CircleShape2D_yan7h")
+
+[node name="PointLight2D" type="PointLight2D" parent="Area2D"]
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
 enabled = false
 color = Color(1, 1, 1, 0.85098)
 texture = ExtResource("8_8f82p")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(25, 17)
-shape = SubResource("RectangleShape2D_tugb5")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
