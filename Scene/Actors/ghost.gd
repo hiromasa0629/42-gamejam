@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var vaporize = $AnimatedSprite2D
+@onready var ghost_sprite = $GhostFull2D
+@onready var ghost_eyes_sprite = $GhostEyes2D
 
 func _ready():
 	update_animation_params(starting_direction)
@@ -15,6 +17,13 @@ func _physics_process(delta):
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up"),
 	)
+	if (input_direction.x < 0):
+		ghost_sprite.flip_h = true
+		ghost_eyes_sprite.flip_h = true
+	else:
+		ghost_sprite.flip_h = false
+		ghost_eyes_sprite.flip_h = false
+
 	if Input.is_key_label_pressed(KEY_E):
 		activate_vaporize(input_direction)
 	else:
