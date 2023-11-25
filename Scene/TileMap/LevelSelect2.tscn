@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bsi8qo3osp32m"]
+[gd_scene load_steps=36 format=3 uid="uid://dby5v1wu7pky0"]
 
 [ext_resource type="Texture2D" uid="uid://3tim5g5ylkfh" path="res://Art/TileSet/Grass.png" id="1_ic4eh"]
 [ext_resource type="Texture2D" uid="uid://dk5h7d2ajdrw8" path="res://Art/TileSet/Hills.png" id="2_jalqc"]
@@ -16,8 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://bxdn3wcu7yy8e" path="res://Art/TileSet/Wooden House.png" id="14_3vm81"]
 [ext_resource type="Script" path="res://Scene/TileMap/Tile_map.gd" id="15_0pmwg"]
 [ext_resource type="PackedScene" uid="uid://c5enbktrtwyfe" path="res://Scene/Actors/goldKnight.tscn" id="16_2cplm"]
-[ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="17_o0gfu"]
-[ext_resource type="PackedScene" uid="uid://c687358peh3vq" path="res://Scene/Fires/TorchOutBlue.tscn" id="18_qhpcy"]
+[ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="17_weosa"]
+[ext_resource type="PackedScene" uid="uid://c687358peh3vq" path="res://Scene/Fires/TorchOutBlue.tscn" id="18_qukfb"]
+[ext_resource type="PackedScene" uid="uid://dp5nvxjyg2uos" path="res://Scene/Cow/cow.tscn" id="19_en118"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ki88u"]
 texture = ExtResource("1_ic4eh")
@@ -2113,37 +2114,55 @@ position = Vector2(1343, 212)
 [node name="goldKnight" parent="." instance=ExtResource("16_2cplm")]
 position = Vector2(-3.72931, 556.993)
 
-[node name="chicken" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(314.662, 153.695)
 
-[node name="chicken2" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken2" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(-9.29009, 357.98)
 
-[node name="chicken3" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken3" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(24.3148, 537.055)
 
-[node name="chicken4" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken4" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(575.324, 306.771)
 
-[node name="chicken5" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken5" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(582.932, 257.787)
 
-[node name="chicken6" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken6" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(647.884, 279.931)
 
-[node name="chicken7" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken7" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(605.854, 293.338)
 
-[node name="chicken8" parent="." instance=ExtResource("17_o0gfu")]
+[node name="chicken8" parent="." instance=ExtResource("17_weosa")]
 position = Vector2(651.528, 214.438)
 
-[node name="torch_out" parent="." instance=ExtResource("18_qhpcy")]
+[node name="torch_out" parent="." instance=ExtResource("18_qukfb")]
 position = Vector2(39.6965, 370.881)
 
-[node name="torch_out2" parent="." instance=ExtResource("18_qhpcy")]
+[node name="torch_out2" parent="." instance=ExtResource("18_qukfb")]
 position = Vector2(342.651, 163.259)
 
-[node name="torch_out3" parent="." instance=ExtResource("18_qhpcy")]
+[node name="torch_out3" parent="." instance=ExtResource("18_qukfb")]
 position = Vector2(856.643, 165.39)
+
+[node name="cow" parent="." instance=ExtResource("19_en118")]
+position = Vector2(114.991, 457.255)
+
+[node name="cow2" parent="." instance=ExtResource("19_en118")]
+position = Vector2(223.224, 125.493)
+
+[node name="cow3" parent="." instance=ExtResource("19_en118")]
+position = Vector2(470.39, 277.039)
+
+[node name="cow4" parent="." instance=ExtResource("19_en118")]
+position = Vector2(815.72, 127.801)
+
+[node name="cow5" parent="." instance=ExtResource("19_en118")]
+position = Vector2(910.276, 329.01)
+
+[node name="cow6" parent="." instance=ExtResource("19_en118")]
+position = Vector2(-9.9778, 216.478)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout" flags=18]
