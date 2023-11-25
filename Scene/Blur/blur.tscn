@@ -1,26 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cni546qf114kl"]
+[gd_scene load_steps=4 format=3 uid="uid://dp0rrfwq3bjap"]
 
-[ext_resource type="Texture2D" uid="uid://b70c756hj3kr5" path="res://Art/Actors/GoldKnight/Faceset.png" id="1_ijy3k"]
-[ext_resource type="Shader" path="res://Scene/Blur/blur.gdshader" id="2_lsnpy"]
+[ext_resource type="Shader" path="res://Scene/Blur/blur.gdshader" id="1_5wjp4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsatg"]
-shader = ExtResource("2_lsnpy")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cufa"]
+shader = ExtResource("1_5wjp4")
 shader_parameter/size_x = 0.008
 shader_parameter/size_y = 0.008
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_3od8f"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_0pmmb"]
 
-[node name="Blur" type="Node2D"]
+[node name="Blur" type="CanvasLayer"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_nsatg")
-offset_right = 1916.0
-offset_bottom = 1077.0
-texture = SubResource("CanvasTexture_3od8f")
-
-[node name="Faceset" type="Sprite2D" parent="."]
-position = Vector2(854, 376.5)
-scale = Vector2(9.52632, 8.92105)
-texture = ExtResource("1_ijy3k")
+[node name="BlurShader" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_1cufa")
+offset_right = 1908.0
+offset_bottom = 1084.0
+texture = SubResource("CanvasTexture_0pmmb")
