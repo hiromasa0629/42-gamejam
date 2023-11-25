@@ -55,10 +55,10 @@ position = Vector2(483, 255)
 position = Vector2(252, 237)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Blur" parent="." instance=ExtResource("8_0r7bx")]
 visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("9_lqpmg")]
+visible = false

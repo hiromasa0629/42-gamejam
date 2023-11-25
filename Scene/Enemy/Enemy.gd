@@ -5,11 +5,18 @@ extends CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var ghost_sprite = $GhostFull2D
+@onready var ghost_eyes_sprite = $GhostEyes2D
+
 @onready var nav_agent = $NavigationAgent2D
+@onready var enemy_eye = $EnemyEyeLight
+
+@onready var chase_delay = $ChaseDelay
 
 var is_in_range: bool = false
-var is_light_on: bool = false
+var is_light_on: bool = true
 var chase_tourch: bool = false
+var is_chasing: bool = false
 
 var target: CharacterBody2D
 var tourch_target
@@ -24,16 +31,22 @@ func _ready():
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	target = get_tree().get_nodes_in_group("Player")[0]
-	look_at(target.global_position)
 
-	if (chase_tourch):
-		var direction = (tourch_target.position - position).normalized()
-		velocity = direction * move_speed
-		move_and_slide()
-	elif (is_light_on and is_in_range):
-		var direction = global_position.direction_to(nav_agent.get_next_path_position())
-		velocity = direction * move_speed
-		move_and_slide()
+	if (is_chasing):
+		if (chase_tourch):
+			var direction = (tourch_target.position - position).normalized()
+			velocity = direction * move_speed
+			handle_animation(direction)
+			move_and_slide()
+		elif (is_light_on and is_in_range):
+			var direction = global_position.direction_to(nav_agent.get_next_path_position())
+			velocity = direction * move_speed
+			handle_animation(direction)
+			move_and_slide()
+		else:
+			is_chasing = false
+			enemy_eye.enabled = false
+
 	pick_new_state()
 
 func make_path():
@@ -50,12 +63,16 @@ func _on_timer_timeout():
 	
 func handle_player_spotted():
 	is_light_on = true
+	if (is_in_range and !is_chasing):
+		start_delay_timer()
 	
 func handle_player_not_spotted():
 	is_light_on = false
 
 func handle_player_entered():
 	is_in_range = true
+	if (is_light_on and !is_chasing):
+		start_delay_timer()
 
 func handle_player_exited():
 	is_in_range = false
@@ -63,8 +80,45 @@ func handle_player_exited():
 func tourch_entered(tourch):
 	tourch_target = tourch
 	chase_tourch = true
+	if (!is_chasing):
+		start_delay_timer()
 
 func tourch_exited(tourch):
 	if (tourch_target and tourch_target == tourch):
 		chase_tourch = false
 		tourch_target = null
+
+
+func update_animation_params(move_input: Vector2):
+	if (move_input != Vector2.ZERO):
+		state_machine.travel("Walk")
+		animation_tree.set("parameters/Walk/blend_position", move_input)
+		
+	else:
+		state_machine.travel("Idle")
+		animation_tree.set("parameters/Idle/blend_position", move_input)
+		
+
+func activate_vaporize(move_input: Vector2):
+	state_machine.travel("Vaporize")
+	animation_tree.set("parameters/Vaporize/blend_position", move_input)
+	
+func handle_animation(input_direction):
+	if (input_direction.x < 0):
+		ghost_sprite.flip_h = true
+		ghost_eyes_sprite.flip_h = true
+	else:
+		ghost_sprite.flip_h = false
+		ghost_eyes_sprite.flip_h = false
+		
+	update_animation_params(input_direction)
+	
+func start_delay_timer():
+	enemy_eye.enabled = true
+	chase_delay.start()
+
+func stop_chasing():
+	is_chasing = false
+
+func _on_chase_delay_timeout():
+	is_chasing = true
