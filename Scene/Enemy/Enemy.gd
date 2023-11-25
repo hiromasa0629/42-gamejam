@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 150
+@export var move_speed: float = 200
 @export var player: CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
@@ -31,17 +31,17 @@ func _ready():
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	target = get_tree().get_nodes_in_group("Player")[0]
-
+	move_speed = 200
 	if (is_chasing):
 		if (chase_tourch):
 			var direction = (tourch_target.position - position).normalized()
+			handle_animation(direction, tourch_target, 15)
 			velocity = direction * move_speed
-			handle_animation(direction)
 			move_and_slide()
 		elif (is_light_on and is_in_range):
 			var direction = global_position.direction_to(nav_agent.get_next_path_position())
+			handle_animation(direction, target, 25)
 			velocity = direction * move_speed
-			handle_animation(direction)
 			move_and_slide()
 		else:
 			is_chasing = false
@@ -103,14 +103,15 @@ func activate_vaporize(move_input: Vector2):
 	state_machine.travel("Vaporize")
 	animation_tree.set("parameters/Vaporize/blend_position", move_input)
 	
-func handle_animation(input_direction):
+func handle_animation(input_direction, target, i):
 	if (input_direction.x < 0):
 		ghost_sprite.flip_h = true
 		ghost_eyes_sprite.flip_h = true
 	else:
 		ghost_sprite.flip_h = false
 		ghost_eyes_sprite.flip_h = false
-		
+	if (position.distance_to(target.position) < i):
+		move_speed = 0	
 	update_animation_params(input_direction)
 	
 func start_delay_timer():
