@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdci0o320d4wj"]
+
+[ext_resource type="Texture2D" uid="uid://bo2d5278wii24" path="res://Art/Fires/TorchBlue.png" id="1_qepnq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tit3s"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8twy"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4helv"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbq4r"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1566g"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sqxp"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8myj2"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8q50"]
+atlas = ExtResource("1_qepnq")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yyx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tit3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8twy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4helv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbq4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1566g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sqxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8myj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8q50")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Torch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6yyx5")
+frame_progress = 0.199806
