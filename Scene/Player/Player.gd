@@ -1,16 +1,17 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 150
+@export var move_speed: float = 120
 @export var matches_left: int = 10
 
 @onready var tourch_light = $Area2D/PointLight2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
-var bullet = preload("res://tourch.tscn")
+var tourch = preload("res://Scene/Tourch/Tourch.tscn")
 var can_throw = true
 
 signal playerspotted
+signal playernotspotted
 
 func _physics_process(delta):
 	
@@ -39,10 +40,13 @@ func switch_torch_light():
 	if (!tourch_light.enabled):
 		matches_left -= 1
 		print(matches_left)
-	if (tourch_light.enabled and matches_left == 0):
-		print("death")
-	tourch_light.enabled = !tourch_light.enabled
-	emit_signal("playerspotted")
+		tourch_light.enabled = true
+		emit_signal("playerspotted")
+	elif (tourch_light.enabled):
+		if (matches_left == 0):
+			print("death")
+		tourch_light.enabled = false
+		emit_signal("playernotspotted")
 		
 func _on_area_2d_body_entered(body):
 	if (body.is_in_group("Enemy")):
@@ -53,7 +57,14 @@ func _on_area_2d_body_exited(body):
 		body.handle_player_exited()
 
 func throw():
-	var bullet_instance = bullet.instantiate()
-	bullet_instance.position = position
-	get_tree().get_root().add_child(bullet_instance)
+	if (tourch_light.enabled):
+		tourch_light.enabled = false
+	elif (!tourch_light.enabled):
+		matches_left -= 1
+		if (matches_left == 0):
+			print("death")
+	emit_signal("playernotspotted")
+	var tourch_instance = tourch.instantiate()
+	tourch_instance.position = position
+	get_tree().get_root().add_child(tourch_instance)
 	can_throw = true
