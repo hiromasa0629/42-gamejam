@@ -16,6 +16,7 @@ func _ready():
 	await get_tree().process_frame
 	target = get_tree().get_nodes_in_group("Player")[0]
 	target.connect("playerspotted", handle_player_spotted)
+	target.connect("playernotspotted", handle_player_not_spotted)
 	make_path()
 
 func _physics_process(delta):
@@ -42,7 +43,10 @@ func _on_timer_timeout():
 	make_path()
 	
 func handle_player_spotted():
-	is_light_on = !is_light_on
+	is_light_on = true
+	
+func handle_player_not_spotted():
+	is_light_on = false
 
 func handle_player_entered():
 	is_in_range = true

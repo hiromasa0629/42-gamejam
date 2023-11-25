@@ -1,29 +1,26 @@
-extends Area2D
+extends Sprite2D
 
 @export var speed = 3
-
 @onready var light = $PointLight2D
 
-var direction: Vector2 = Vector2.ZERO
-var original_position: Vector2 = Vector2.ZERO
 var target_position: Vector2 = Vector2.ZERO
-var tween : Tween
+var is_colliding : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	original_position = position
 	target_position = get_global_mouse_position()
-	direction = (target_position - position).normalized()
-
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "rotation", randi_range(-5, 5), 0.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = lerp(position, target_position, speed * delta)
-	if (!position.is_equal_approx(target_position)):
-		rotation += 9 * -1 * delta
+	if (!is_colliding):
+		position = lerp(position, target_position, speed * delta)
 
 func _on_timer_timeout():
-	tween = create_tween()
+	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.connect("finished", on_tween_finished)
@@ -31,3 +28,7 @@ func _on_timer_timeout():
 
 func on_tween_finished():
 	queue_free()
+
+func _on_collided_body_entered(body):
+	if (!body.name == "Player"):
+		is_colliding = true

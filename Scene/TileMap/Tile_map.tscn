@@ -1488,7 +1488,8 @@ texture = ExtResource("8_ikgns")
 6:4/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_nv6et"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ki88u")
 sources/1 = SubResource("TileSetAtlasSource_mg6hp")
@@ -1512,7 +1513,7 @@ _data = {
 }
 point_count = 2
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMap" type="TileMap" groups=["Tile"]]
 position = Vector2(226, -203)
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_nv6et")
