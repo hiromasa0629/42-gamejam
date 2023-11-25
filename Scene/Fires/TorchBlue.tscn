@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdci0o320d4wj"]
+[gd_scene load_steps=13 format=3 uid="uid://bdci0o320d4wj"]
 
 [ext_resource type="Texture2D" uid="uid://bo2d5278wii24" path="res://Art/Fires/TorchBlue.png" id="1_qepnq"]
+[ext_resource type="Texture2D" uid="uid://rfbxi4mp86bf" path="res://Art/Fires/TorchOutBlue.png" id="2_xn62a"]
+[ext_resource type="Script" path="res://Scene/Fires/TorchBlue.gd" id="3_u85bt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tit3s"]
 atlas = ExtResource("1_qepnq")
@@ -62,10 +64,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_r8q50")
 }],
 "loop": true,
-"name": &"default",
+"name": &"blue_fire",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xn62a")
+}],
+"loop": true,
+"name": &"blue_out",
+"speed": 5.0
 }]
 
 [node name="Torch" type="AnimatedSprite2D"]
+scale = Vector2(2.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_6yyx5")
-frame_progress = 0.199806
+animation = &"blue_out"
+script = ExtResource("3_u85bt")

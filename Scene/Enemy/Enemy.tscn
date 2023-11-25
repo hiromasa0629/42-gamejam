@@ -177,7 +177,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_p83ri"]
 resource_name = "vaporize"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -206,7 +205,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_qevya"]
 resource_name = "vaporize_eyes"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -345,7 +343,7 @@ hframes = 9
 vframes = 5
 
 [node name="GhostEyes2D" type="Sprite2D" parent="."]
-z_index = 1001
+z_index = 1002
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_b8xoc")
 hframes = 9
@@ -377,7 +375,7 @@ autostart = true
 [node name="EnemyEyeLight" type="PointLight2D" parent="."]
 enabled = false
 color = Color(1, 0, 0, 1)
-range_z_min = 1000
+range_z_min = 1002
 texture = ExtResource("4_nxogd")
 
 [node name="ChaseDelay" type="Timer" parent="."]

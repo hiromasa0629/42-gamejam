@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://binuodjnagac5"]
+[gd_scene load_steps=12 format=3 uid="uid://binuodjnagac5"]
 
 [ext_resource type="Script" path="res://Scene/Main.gd" id="1_56sv3"]
 [ext_resource type="PackedScene" uid="uid://f45tg26w61c" path="res://Scene/Player/Player.tscn" id="1_n7ygp"]
@@ -8,10 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://cdg8cfedxga5p" path="res://Scene/chicken/chicken.tscn" id="6_1v8we"]
 [ext_resource type="PackedScene" uid="uid://dp0rrfwq3bjap" path="res://Scene/Blur/blur.tscn" id="8_0r7bx"]
 [ext_resource type="PackedScene" uid="uid://3lgtktntrtmd" path="res://Scene/GUI/GameOverLabel.tscn" id="9_lqpmg"]
+[ext_resource type="PackedScene" uid="uid://by51f2wg82jgi" path="res://Scene/Tourch/TheRealTourch.tscn" id="10_2fpcg"]
 
-[node name="Main" type="Node2D"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2tth"]
+shader = ExtResource("3_u0ccl")
+shader_parameter/size_x = 0.008
+shader_parameter/size_y = 0.008
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("torch")]
+
 y_sort_enabled = true
 script = ExtResource("1_56sv3")
+torch = NodePath("Torch")
+
+[node name="Torch" parent="." instance=ExtResource("10_2fpcg")]
+position = Vector2(56, 206)
 
 [node name="TileMap" parent="." instance=ExtResource("2_tnk3u")]
 z_index = -10
@@ -57,10 +69,13 @@ visible = false
 visible = false
 
 [node name="Enemy2" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-150, 290)
+position = Vector2(-230, 224)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-263, 142)
+position = Vector2(-190, 354)
 
 [node name="Enemy4" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-310, 251)
+position = Vector2(211, 343)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_ihmbj")]
+position = Vector2(-396, 158)

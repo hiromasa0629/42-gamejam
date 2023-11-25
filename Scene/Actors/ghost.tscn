@@ -339,14 +339,12 @@ script = ExtResource("3_aumu7")
 texture = ExtResource("1_ppc2p")
 hframes = 9
 vframes = 5
-frame = 4
 
 [node name="GhostEyes2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 0.694626)
 texture = ExtResource("3_rg2ki")
 hframes = 9
 vframes = 5
-frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0.5)

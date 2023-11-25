@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 var tourch = preload("res://Scene/Tourch/Tourch.tscn")
 var can_throw = true
+var finish_tourch : Node2D = null
 
 signal playerspotted
 signal playernotspotted
@@ -17,12 +18,18 @@ signal gameover
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var match_counter = $Match
+@onready var bubble_sfx = $BubbleSFX
 
 func _ready():
 	match_counter.set_count(matches_left)
 	update_animation_params(starting_direction)
 
 func _physics_process(delta):
+	if (finish_tourch and Input.is_action_just_pressed("E")):
+		finish_tourch.win()
+		tourch_light.enabled = false
+		update_animation_params(Vector2.ZERO)
+		return
 	if (Input.is_action_just_pressed("left_click") and can_throw):
 		throw()
 	if (Input.is_action_just_pressed("SpaceBar")):
@@ -34,13 +41,7 @@ func _physics_process(delta):
 	update_animation_params(input_direction)
 	velocity = input_direction * move_speed
 	move_and_slide()
-	pick_new_state()
-	
-func pick_new_state():
-	if (velocity != Vector2.ZERO):
-		state_machine.travel("Walk")
-	else:
-		state_machine.travel("Idle")
+
 		
 func switch_torch_light():
 	if (!tourch_light.enabled):
@@ -81,11 +82,24 @@ func update_animation_params(move_input: Vector2):
 	if (move_input != Vector2.ZERO):
 		state_machine.travel("Walk")
 		animation_tree.set("parameters/Walk/blend_position", move_input)
-		
+		if (!$WalkSFX.playing):
+			$WalkSFX.play()
 	else:
 		state_machine.travel("Idle")
 		animation_tree.set("parameters/Idle/blend_position", move_input)
+		if ($WalkSFX.playing):
+			$WalkSFX.stop()
 		
 func _on_enemy_kill_zone_body_entered(body):
 	if (body.is_in_group("Enemy")):
 		emit_signal("gameover")
+
+func handle_toggle_bubble_e(tourch):
+	bubble_sfx.play()
+	$ESpeedBubble.visible = !$ESpeedBubble.visible
+	if ($ESpeedBubble.visible):
+		finish_tourch = tourch
+	else:
+		finish_tourch = null
+		
+	
