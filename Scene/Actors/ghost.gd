@@ -5,14 +5,12 @@ extends CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var animation_player = $AnimationPlayer
 @onready var vaporize = $AnimatedSprite2D
 
 func _ready():
 	update_animation_params(starting_direction)
 
 func _physics_process(delta):
-	print(animation_player.get_animation("run").find_track("GhostFull2D:frame", 8))
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up"),
