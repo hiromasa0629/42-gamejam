@@ -11,12 +11,15 @@ var can_throw = true
 
 signal playerspotted
 signal playernotspotted
+signal gameover
 
 @export var starting_direction : Vector2 = Vector2(0, 1)
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var match_counter = $Match
 
 func _ready():
+	match_counter.set_count(matches_left)
 	update_animation_params(starting_direction)
 
 func _physics_process(delta):
@@ -27,7 +30,7 @@ func _physics_process(delta):
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up"),
-	)
+	).normalized()
 	update_animation_params(input_direction)
 	velocity = input_direction * move_speed
 	move_and_slide()
@@ -42,12 +45,12 @@ func pick_new_state():
 func switch_torch_light():
 	if (!tourch_light.enabled):
 		matches_left -= 1
-		print(matches_left)
+		match_counter.decrement()
 		tourch_light.enabled = true
 		emit_signal("playerspotted")
 	elif (tourch_light.enabled):
-		if (matches_left == 0):
-			print("death")
+		if (matches_left <= 0):
+			emit_signal("gameover")
 		tourch_light.enabled = false
 		emit_signal("playernotspotted")
 		
@@ -64,8 +67,9 @@ func throw():
 		tourch_light.enabled = false
 	elif (!tourch_light.enabled):
 		matches_left -= 1
-		if (matches_left == 0):
-			print("death")
+		match_counter.decrement()
+	if (matches_left <= 0):
+		emit_signal("gameover")
 	emit_signal("playernotspotted")
 	var tourch_instance = tourch.instantiate()
 	tourch_instance.position = position
@@ -82,3 +86,6 @@ func update_animation_params(move_input: Vector2):
 		state_machine.travel("Idle")
 		animation_tree.set("parameters/Idle/blend_position", move_input)
 		
+func _on_enemy_kill_zone_body_entered(body):
+	if (body.is_in_group("Enemy")):
+		emit_signal("gameover")

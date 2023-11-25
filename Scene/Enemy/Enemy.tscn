@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scene/Enemy/Enemy.gd" id="1_1u6pu"]
 [ext_resource type="Texture2D" uid="uid://cda404sk1lq8c" path="res://Art/Actors/Ghost/satyr-Sheet.png" id="2_fmxte"]
 [ext_resource type="Texture2D" uid="uid://cdh8hrslixxtu" path="res://Art/Actors/Ghost/satyr-eyes-white.png" id="3_b8xoc"]
-[ext_resource type="Texture2D" uid="uid://bw4vwyagb8qsn" path="res://light.png" id="4_x761u"]
+[ext_resource type="Texture2D" uid="uid://bw4vwyagb8qsn" path="res://Art/light.png" id="4_nxogd"]
 
 [sub_resource type="Animation" id="Animation_d36v3"]
 length = 0.001
@@ -343,7 +343,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_fmxte")
 hframes = 9
 vframes = 5
-frame = 4
 
 [node name="GhostEyes2D" type="Sprite2D" parent="."]
 z_index = 1001
@@ -351,7 +350,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_b8xoc")
 hframes = 9
 vframes = 5
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -380,7 +378,7 @@ autostart = true
 enabled = false
 color = Color(1, 0, 0, 1)
 range_z_min = 1000
-texture = ExtResource("4_x761u")
+texture = ExtResource("4_nxogd")
 
 [node name="ChaseDelay" type="Timer" parent="."]
 

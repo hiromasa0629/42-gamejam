@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://f45tg26w61c"]
+[gd_scene load_steps=32 format=3 uid="uid://f45tg26w61c"]
 
 [ext_resource type="Script" path="res://Scene/PLayer/Player.gd" id="1_ucck1"]
 [ext_resource type="Texture2D" uid="uid://bchvp3so2kfkq" path="res://Art/Actors/GoldKnight/SpriteSheet.png" id="2_vn3sn"]
-[ext_resource type="Texture2D" uid="uid://bw4vwyagb8qsn" path="res://light.png" id="8_8f82p"]
+[ext_resource type="Texture2D" uid="uid://bw4vwyagb8qsn" path="res://Art/light.png" id="3_jdoyi"]
+[ext_resource type="PackedScene" uid="uid://ba33bq4jmfg62" path="res://Scene/Match/Match.tscn" id="4_r2f7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egyd1"]
 size = Vector2(18, 23)
@@ -231,6 +232,8 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yan7h"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l2xsx"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ucck1")
 
@@ -266,13 +269,22 @@ shape = SubResource("CircleShape2D_yan7h")
 [node name="PointLight2D" type="PointLight2D" parent="Area2D"]
 rotation = 3.14159
 color = Color(0.976471, 0.843137, 0.345098, 0.847059)
-texture = ExtResource("8_8f82p")
+texture = ExtResource("3_jdoyi")
 
 [node name="DefaultLighting" type="PointLight2D" parent="."]
 rotation = 3.14159
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 color = Color(1, 1, 1, 0.0980392)
-texture = ExtResource("8_8f82p")
+texture = ExtResource("3_jdoyi")
+
+[node name="Match" parent="." instance=ExtResource("4_r2f7p")]
+
+[node name="EnemyKillZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyKillZone"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_l2xsx")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="EnemyKillZone" to="." method="_on_enemy_kill_zone_body_entered"]
