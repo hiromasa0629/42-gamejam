@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1yaw7xoxr2g"
-path="res://.godot/imported/Candles.png-44e95a6a3376672f621d25ffe46a1a89.ctex"
+uid="uid://cda404sk1lq8c"
+path="res://.godot/imported/satyr-Sheet.png-5295c8c4cb93e7e1f4f1d566c82e7594.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Fires/Candles.png"
-dest_files=["res://.godot/imported/Candles.png-44e95a6a3376672f621d25ffe46a1a89.ctex"]
+source_file="res://Art/Actors/Ghost/satyr-Sheet.png"
+dest_files=["res://.godot/imported/satyr-Sheet.png-5295c8c4cb93e7e1f4f1d566c82e7594.ctex"]
 
 [params]
 

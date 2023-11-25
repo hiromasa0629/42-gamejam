@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cut5wufs5hldf"]
 
 [ext_resource type="Script" path="res://Scene/Bullet/HGBullet.gd" id="1_711js"]
-[ext_resource type="Texture2D" uid="uid://bvqgxv7osoyw3" path="res://Art/Bullet/1.png" id="2_3ucoy"]
+[ext_resource type="Texture2D" uid="uid://3k7k7ijb0qoj" path="res://Art/Weapons/1-Uzi.png" id="2_adef1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3mqr"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6wsp"]
+size = Vector2(24, 16)
 
 [node name="HGBullet" type="Area2D"]
 script = ExtResource("1_711js")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3ucoy")
+texture = ExtResource("2_adef1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_r3mqr")
+shape = SubResource("RectangleShape2D_o6wsp")
