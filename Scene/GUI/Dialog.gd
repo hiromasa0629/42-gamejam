@@ -35,7 +35,7 @@ func _ready():
 	
 
 func _process(delta):
-	if (!start_button_clicked):
+	if (!start_button_clicked || global.game_is_started):
 		return
 
 	if (text_queue.size() == 1):

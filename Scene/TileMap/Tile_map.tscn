@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bjfayh6utaxm1" path="res://Art/TileSet/Basic Plants.png" id="3_8ihv4"]
 [ext_resource type="Texture2D" uid="uid://c8higrkdmxt18" path="res://Art/TileSet/Paths.png" id="4_caesq"]
 [ext_resource type="Texture2D" uid="uid://btu0g055ksidv" path="res://Art/TileSet/Basic tools and meterials.png" id="4_hitc2"]
-[ext_resource type="Script" path="res://Scene/TileMap/Tile_map.gd" id="4_urbt3"]
 [ext_resource type="Texture2D" uid="uid://cmhtdx1k7qh5k" path="res://Art/TileSet/Tilled Dirt.png" id="5_0u41b"]
 [ext_resource type="Texture2D" uid="uid://ch2wom6xghj1x" path="res://Art/TileSet/Free_Chicken_House.png" id="5_oob3b"]
 [ext_resource type="Texture2D" uid="uid://bkw0r1e5057v0" path="res://Art/TileSet/Fences.png" id="6_5wb6u"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bxdn3wcu7yy8e" path="res://Art/TileSet/Wooden House.png" id="8_ikgns"]
 [ext_resource type="Texture2D" uid="uid://bt5u5vy3etywa" path="res://Art/TileSet/Basic Grass Biom things 1 copy.png" id="11_d4mwg"]
 [ext_resource type="Texture2D" uid="uid://bsst6r3kl6iq3" path="res://Art/TileSet/Basic Furniture.png" id="12_gjxqf"]
+[ext_resource type="Script" path="res://Scene/TileMap/Tile_map.gd" id="15_uk38h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pyj8e"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1537,7 +1537,7 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("4_urbt3")
+script = ExtResource("15_uk38h")
 
 [node name="CloudPath" type="Path2D" parent="."]
 position = Vector2(70, 0)

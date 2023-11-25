@@ -23,7 +23,7 @@ func _on_area_2d_body_entered(body):
 		body.handle_toggle_bubble_e(self)
 
 func _on_area_2d_body_exited(body):
-	if (body.name == "Player"):
+	if (body.name == "Player" and global.trx == false):
 		body.handle_toggle_bubble_e(self)
 
 func win():
