@@ -35,8 +35,7 @@ func update_animation_params(move_input: Vector2):
 		state_machine.travel("Idle")
 		if ($WalkSFX.playing):
 			$WalkSFX.stop()
-	
-		
+
 func handle_toggle_bubble_e():
 	bubble_sfx.play()
 	$ESpeedBubble.visible = !$ESpeedBubble.visible

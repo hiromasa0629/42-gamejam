@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://f45tg26w61c"]
+[gd_scene load_steps=48 format=3 uid="uid://f45tg26w61c"]
 
 [ext_resource type="Script" path="res://Scene/PLayer/Player.gd" id="1_ucck1"]
 [ext_resource type="Texture2D" uid="uid://bchvp3so2kfkq" path="res://Art/Actors/GoldKnight/SpriteSheet.png" id="2_vn3sn"]
