@@ -71,7 +71,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7hwgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wkwr"]
-size = Vector2(33, 26)
+size = Vector2(4, 11)
 
 [node name="Tourch" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_6yyx5")
@@ -97,6 +97,7 @@ autostart = true
 [node name="Collided" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collided"]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_7wkwr")
 
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_detection_body_entered"]
