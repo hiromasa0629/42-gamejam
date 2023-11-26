@@ -36,6 +36,8 @@ func on_tween_finished():
 	gameover_canvas.show()
 	
 func handle_gameover():
+	get_node("Player").get_node("ChasingBGM").stop()
+	$GameOverSFX.play()
 	player.set_process(false)
 	player.set_physics_process(false)
 	blur_canvas.show()
@@ -52,13 +54,15 @@ func handle_gameover():
 	get_tree().change_scene_to_file("res://Scene/TileMap/LevelSelect2.tscn")
 	
 func handle_win():
+	player.get_node("ChasingBGM").stop()
+	$Level1BGM.stop()
+	$VictorySFX.play()
 	var enemy = get_tree().get_nodes_in_group("Enemy")
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property($Camera2D, 'zoom', Vector2(2,2), 0.1)
 	for i in enemy.size():
-		print(enemy[i])
 		enemy[i].set_physics_process(false)
 		enemy[i].play_death()
 	$WinGame.show()

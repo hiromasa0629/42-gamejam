@@ -19,8 +19,12 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if (body.name == "goldKnight"):
+		if (animation.animation == "blue_fire"):
+			$FireSFX.play()
 		body.handle_toggle_bubble_e()
 
 func _on_area_2d_body_exited(body):
 	if (body.name == "goldKnight" and global.trx == false):
+		if (animation.animation == "blue_fire"):
+			$FireSFX.stop()
 		body.handle_toggle_bubble_e()
