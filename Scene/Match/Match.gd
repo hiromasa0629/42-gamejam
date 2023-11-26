@@ -4,6 +4,7 @@ extends CanvasLayer
 var count :int = 0
 
 func set_count(i):
+	textbox.text = str(i)
 	count = i
 
 func decrement():

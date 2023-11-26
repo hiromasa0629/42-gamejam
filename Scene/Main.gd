@@ -13,11 +13,26 @@ var tween: Tween
 var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var map_limits = $TileMap.get_used_rect()
+	var map_cellsize = $TileMap.tile_set.tile_size
+	print(map_limits)
+	print(map_cellsize)
+	$Camera2D.limit_left = (map_limits.position.x * map_cellsize.x * 2) + 5
+	$Camera2D.limit_right = (map_limits.end.x * map_cellsize.x * 2) - 5
+	$Camera2D.limit_top = (map_limits.position.y * map_cellsize.y * 2) + 5
+	$Camera2D.limit_bottom = (map_limits.end.y * map_cellsize.y * 2) - 5
+	print($Camera2D.limit_left)
+	print($Camera2D.limit_right)
+	print($Camera2D.limit_top)
+	print($Camera2D.limit_bottom)
+	
 	global.trx = false
 	player = get_tree().get_nodes_in_group("Player")[0]
 	player.connect("gameover", handle_gameover)
 	torch.connect("winsignal", handle_win)
 	await(get_tree().create_timer(5).timeout)
+	
+
 	$Instruction.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +47,7 @@ func handle_gameover():
 	$GameOverSFX.play()
 	player.set_process(false)
 	player.set_physics_process(false)
+	player.get_node("WalkSFX").stop()
 	blur_canvas.show()
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
