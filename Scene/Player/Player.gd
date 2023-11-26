@@ -21,6 +21,7 @@ signal gameover
 @onready var bubble_sfx = $BubbleSFX
 @onready var tourch_animation = $TourchAnimation
 
+
 enum State {
 	MIDDLE,
 	SIDE
@@ -29,6 +30,11 @@ enum State {
 var current_state = State.SIDE
 
 func _ready():
+	tourch_light.energy = 0
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(tourch_light, "energy", 1, 1)
 	tourch_animation.play()
 	tourch_animation.animation = "red_fire"
 	match_counter.set_count(matches_left)

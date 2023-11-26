@@ -7,27 +7,42 @@ var cloud = preload("res://Scene/Cloud/cloud.tscn")
 
 var is_close_to_level: bool = false
 
+@onready var transition_canvas = $CanvasModulate
+
 func _ready():
 	global.trx = false
+	if (!global.game_is_started):
+		$goldKnight.set_physics_process(false)
+	else:
+		transition_canvas.color = Color("000000")
+		var tween2 = create_tween()
+		tween2.set_ease(Tween.EASE_IN_OUT)
+		tween2.set_trans(Tween.TRANS_LINEAR)
+		tween2.tween_property(transition_canvas, 'color', Color("ffffff"),1)
+		$goldKnight.position = global.level_pos
+		$goldKnight.set_physics_process(true)
 	var map_limits = get_used_rect()
 	var map_cellsize = tile_set.tile_size
 	$Camera2D.limit_left = map_limits.position.x * map_cellsize.x
 	$Camera2D.limit_right = map_limits.end.x * map_cellsize.x
 	$Camera2D.limit_top = map_limits.position.y * map_cellsize.y
 	$Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
-	if (!global.game_is_started):
-		$goldKnight.set_physics_process(false)
-	else:
-		$goldKnight.position = global.level_pos
-		$goldKnight.set_physics_process(true)
 	$goldKnight.update_animation_params(Vector2.ZERO)
 
 func _process(delta):
 	if (Input.is_action_just_pressed("E")):
 		if (is_close_to_level):
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT)
+			tween.set_trans(Tween.TRANS_LINEAR)
+			tween.connect("finished", on_tween_finished)
+			tween.tween_property(transition_canvas, 'color', Color("000000"),1)
 			global.level_pos = $goldKnight.position
 			global.trx = true
-			get_tree().change_scene_to_file("res://Scene/Main.tscn")
+			$goldKnight.set_physics_process(false)
+
+func on_tween_finished():
+	get_tree().change_scene_to_file("res://Scene/Main.tscn")
 
 func _on_timer_timeout():
 	var cloud_instance = cloud.instantiate()
