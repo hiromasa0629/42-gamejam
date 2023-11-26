@@ -77,14 +77,14 @@ func _on_area_2d_body_entered(body):
 	check_enemy_overlapping()
 	if (body.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 1):
-			get_tree().get_root().get_node("Main").get_node("Level1BGM").stop()
+#			get_tree().get_root().get_node("Main").get_node("Level1BGM").stop()
 			$ChasingBGM.play()
 		body.handle_player_entered()
 
 func _on_area_2d_body_exited(body):
 	if (body.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 0):
-			get_tree().get_root().get_node("Main").get_node("Level1BGM").play()
+#			get_tree().get_root().get_node("Main").get_node("Level1BGM").play()
 			$ChasingBGM.stop()		
 		body.handle_player_exited()
 

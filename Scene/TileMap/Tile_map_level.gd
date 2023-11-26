@@ -42,7 +42,7 @@ func _process(delta):
 			$goldKnight.set_physics_process(false)
 
 func on_tween_finished():
-	get_tree().change_scene_to_file("res://Scene/Main.tscn")
+	get_tree().change_scene_to_file("res://Scene/MainLevel1.tscn")
 
 func _on_timer_timeout():
 	var cloud_instance = cloud.instantiate()

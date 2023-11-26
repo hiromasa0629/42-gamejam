@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bxdn3wcu7yy8e" path="res://Art/TileSet/Wooden House.png" id="8_ikgns"]
 [ext_resource type="Texture2D" uid="uid://bt5u5vy3etywa" path="res://Art/TileSet/Basic Grass Biom things 1 copy.png" id="11_d4mwg"]
 [ext_resource type="Texture2D" uid="uid://bsst6r3kl6iq3" path="res://Art/TileSet/Basic Furniture.png" id="12_gjxqf"]
-[ext_resource type="Script" path="res://Scene/TileMap/Tile_map.gd" id="15_uk38h"]
+[ext_resource type="Script" path="res://Scene/TileMap/Level1.gd" id="15_y6oas"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pyj8e"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1537,7 +1537,7 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("15_uk38h")
+script = ExtResource("15_y6oas")
 
 [node name="CloudPath" type="Path2D" parent="."]
 position = Vector2(70, 0)
