@@ -30,6 +30,7 @@ func _ready():
 	queue_text("The village of Eldoria lay silent beneath an oppressive shroud of darkness.")
 	queue_text("The once vibrant homes and lively streets now stood still, swallowed by an abyssal void.")
 	queue_text("The storm had come, fierce and unrelenting, leaving only desolation in its wake.")
+	queue_text("Only if someone can reignite the magical torch...")
 	queue_text("Gold Knight, where are you...")
 	queue_text("I am here!")
 	
@@ -38,7 +39,7 @@ func _process(delta):
 	if (!start_button_clicked || global.game_is_started):
 		return
 
-	if (text_queue.size() == 1):
+	if (text_queue.size() == 2):
 		popo_rect.show()
 	elif (text_queue.size() == 0):
 		popo_rect.hide()
