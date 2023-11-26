@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu37efreitl1q"]
+
+[ext_resource type="Script" path="res://Scene/water/water.gd" id="1_vs0fo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xy15"]
+
+[node name="WaterDetection" type="Area2D"]
+script = ExtResource("1_vs0fo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3xy15")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
