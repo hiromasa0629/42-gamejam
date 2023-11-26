@@ -6,6 +6,11 @@ var cloud = preload("res://Scene/Cloud/cloud.tscn")
 @onready var cloud_free_point = $CloudFreePoint
 
 var is_close_to_level: bool = false
+var level :int = 0
+
+var levels = [
+	"res://Scene/Main.tscn"
+]
 
 @onready var transition_canvas = $CanvasModulate
 
@@ -42,7 +47,7 @@ func _process(delta):
 			$goldKnight.set_physics_process(false)
 
 func on_tween_finished():
-	get_tree().change_scene_to_file("res://Scene/Main.tscn")
+	get_tree().change_scene_to_file(levels[level - 1])
 
 func _on_timer_timeout():
 	var cloud_instance = cloud.instantiate()
@@ -67,6 +72,7 @@ func _on_initial_dialogue_initial_dialogue_finish():
 	pass # Replace with function body.
 
 
-func _on_gold_knight_is_close_to_level():
+func _on_gold_knight_is_close_to_level(i):
 	is_close_to_level = !is_close_to_level
+	level = i
 	pass # Replace with function body.

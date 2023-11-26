@@ -36,8 +36,8 @@ func update_animation_params(move_input: Vector2):
 		if ($WalkSFX.playing):
 			$WalkSFX.stop()
 
-func handle_toggle_bubble_e():
+func handle_toggle_bubble_e(i : int):
 	bubble_sfx.play()
 	$ESpeedBubble.visible = !$ESpeedBubble.visible
-	emit_signal("is_close_to_level")
+	emit_signal("is_close_to_level", i)
 	
