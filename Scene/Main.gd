@@ -17,19 +17,11 @@ func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	player.connect("gameover", handle_gameover)
 	torch.connect("winsignal", handle_win)
+	await(get_tree().create_timer(5).timeout)
+	$Instruction.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	if (Input.is_action_just_pressed("testblur")):
-#		blur_canvas.show()
-#		tween = create_tween()
-#		tween.set_ease(Tween.EASE_IN_OUT)
-#		tween.set_trans(Tween.TRANS_LINEAR)
-#		tween.connect("finished", on_tween_finished)
-#		tween.set_parallel(true)
-#		tween.tween_property(blur_rect.material, 'shader_parameter/size_x', 0.017, 0.7)
-#		tween.tween_property(blur_rect.material, 'shader_parameter/size_y', 0.017, 0.7)
-#
 	pass
 
 func on_tween_finished():
