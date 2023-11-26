@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scene/Main.gd" id="1_56sv3"]
 [ext_resource type="PackedScene" uid="uid://f45tg26w61c" path="res://Scene/Player/Player.tscn" id="1_n7ygp"]
-[ext_resource type="PackedScene" uid="uid://bsi8qo3osp32m" path="res://Scene/TileMap/Level1.tscn" id="2_vq3mh"]
+[ext_resource type="PackedScene" uid="uid://bsi8qo3osp32m" path="res://Scene/TileMap/Level1.tscn" id="2_f615b"]
 [ext_resource type="PackedScene" uid="uid://dk5j6pg02e8n2" path="res://Scene/Enemy/Enemy.tscn" id="3_ihmbj"]
 [ext_resource type="PackedScene" uid="uid://dp0rrfwq3bjap" path="res://Scene/Blur/blur.tscn" id="8_0r7bx"]
 [ext_resource type="PackedScene" uid="uid://3lgtktntrtmd" path="res://Scene/GUI/GameOverLabel.tscn" id="9_lqpmg"]
@@ -18,29 +18,28 @@ y_sort_enabled = true
 script = ExtResource("1_56sv3")
 torch = NodePath("Torch")
 
-[node name="TileMap" parent="." instance=ExtResource("2_vq3mh")]
+[node name="TileMap" parent="." instance=ExtResource("2_f615b")]
 
 [node name="Torch" parent="." instance=ExtResource("10_2fpcg")]
 position = Vector2(784, 417)
 
-[node name="Player" parent="." instance=ExtResource("1_n7ygp")]
-position = Vector2(315, 887)
+[node name="Player" parent="." node_paths=PackedStringArray("BGM") instance=ExtResource("1_n7ygp")]
+position = Vector2(328, 876)
 matches_left = 3
+BGM = NodePath("../Level1BGM")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(315, 887)
+position = Vector2(328, 876)
 zoom = Vector2(3, 3)
 limit_top = 0
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ihmbj")]
+[node name="Enemy" parent="." instance=ExtResource("3_ihmbj")]
 position = Vector2(929, 567)
-player = NodePath("../Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Blur" parent="." instance=ExtResource("8_0r7bx")]
@@ -64,7 +63,6 @@ stream = ExtResource("13_lkfxn")
 volume_db = 10.0
 
 [node name="Instruction" parent="." instance=ExtResource("14_2bi0p")]
-visible = false
 
 [node name="Enemy2" parent="." instance=ExtResource("3_ihmbj")]
 position = Vector2(446, 478)

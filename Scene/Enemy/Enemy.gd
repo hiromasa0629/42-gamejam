@@ -103,14 +103,14 @@ func play_death():
 	state_machine.travel("Vaporize")
 	animation_tree.set("parameters/Vaporize/blend_position", Vector2(0,0))
 	
-func handle_animation(input_direction, target, i):
+func handle_animation(input_direction, new_target, i):
 	if (input_direction.x < 0):
 		ghost_sprite.flip_h = true
 		ghost_eyes_sprite.flip_h = true
 	else:
 		ghost_sprite.flip_h = false
 		ghost_eyes_sprite.flip_h = false
-	if (position.distance_to(target.position) < i):
+	if (position.distance_to(new_target.position) < i):
 		move_speed = 0	
 	update_animation_params(input_direction)
 	

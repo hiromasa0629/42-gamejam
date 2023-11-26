@@ -21,10 +21,10 @@ func _ready():
 	$Camera2D.limit_right = (map_limits.end.x * map_cellsize.x * 2) - 5
 	$Camera2D.limit_top = (map_limits.position.y * map_cellsize.y * 2) + 5
 	$Camera2D.limit_bottom = (map_limits.end.y * map_cellsize.y * 2) - 5
-	print($Camera2D.limit_left)
-	print($Camera2D.limit_right)
-	print($Camera2D.limit_top)
-	print($Camera2D.limit_bottom)
+#	print($Camera2D.limit_left)
+#	print($Camera2D.limit_right)
+#	print($Camera2D.limit_top)
+#	print($Camera2D.limit_bottom)
 	
 	global.trx = false
 	player = get_tree().get_nodes_in_group("Player")[0]

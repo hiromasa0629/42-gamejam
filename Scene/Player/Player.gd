@@ -2,33 +2,34 @@ extends CharacterBody2D
 
 @export var move_speed: float = 120
 @export var matches_left: int = 10
-
+@export var BGM : AudioStreamPlayer2D = null
+#
 @onready var tourch_light = $Area2D/PointLight2D
-
-
+#
+#
 var tourch = preload("res://Scene/Tourch/Tourch.tscn")
 var can_throw = true
 var finish_tourch : Node2D = null
-
+#
 signal playerspotted
 signal playernotspotted
 signal gameover
-
+#
 @export var starting_direction : Vector2 = Vector2(0, 1)
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var match_counter = $Match
 @onready var bubble_sfx = $BubbleSFX
 @onready var tourch_animation = $TourchAnimation
-
-
+#
+#
 enum State {
 	MIDDLE,
 	SIDE
 }
 
 var current_state = State.SIDE
-
+#
 func _ready():
 	tourch_light.energy = 0
 	var tween = create_tween()
@@ -41,7 +42,7 @@ func _ready():
 	update_animation_params(starting_direction)
 
 func _physics_process(delta):
-	if (finish_tourch and Input.is_action_just_pressed("E")):
+	if (finish_tourch != null and Input.is_action_just_pressed("E")):
 		finish_tourch.win()
 		tourch_light.enabled = false
 		update_animation_params(Vector2.ZERO)
@@ -73,21 +74,22 @@ func switch_torch_light():
 		tourch_animation.animation = "red_out"
 		emit_signal("playernotspotted")
 		
-func _on_area_2d_body_entered(body):
-	check_enemy_overlapping()
-	if (body.is_in_group("Enemy")):
+func _on_area_2d_body_entered(body_e):
+	if (body_e.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 1):
-			get_tree().get_root().get_node("Main").get_node("Level1BGM").stop()
+			if (BGM):
+				BGM.stop()
 			$ChasingBGM.play()
-		body.handle_player_entered()
-
-func _on_area_2d_body_exited(body):
-	if (body.is_in_group("Enemy")):
+		body_e.handle_player_entered()
+#
+func _on_area_2d_body_exited(body_e):
+	if (body_e.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 0):
-			get_tree().get_root().get_node("Main").get_node("Level1BGM").play()
+			if (BGM):
+				BGM.play()
 			$ChasingBGM.stop()		
-		body.handle_player_exited()
-
+		body_e.handle_player_exited()
+#
 func check_enemy_overlapping() -> int:
 	var count = 0
 	var bodies = $Area2D.get_overlapping_bodies();
@@ -144,13 +146,11 @@ func update_animation_params(move_input: Vector2):
 func _on_enemy_kill_zone_body_entered(body):
 	if (body.is_in_group("Enemy")):
 		emit_signal("gameover")
-
-func handle_toggle_bubble_e(tourch):
+#
+func handle_toggle_bubble_e(finish_t):
 	bubble_sfx.play()
 	$ESpeedBubble.visible = !$ESpeedBubble.visible
 	if ($ESpeedBubble.visible):
-		finish_tourch = tourch
+		finish_tourch = finish_t
 	else:
 		finish_tourch = null
-		
-	
