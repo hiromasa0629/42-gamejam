@@ -5,7 +5,7 @@ extends Node2D
 @onready var blur_rect = $Blur/BlurShader
 @onready var blur_canvas = $Blur
 @onready var gameover_canvas = $GameOver
-
+@onready var transition_canvas = $CanvasModulate
 
 const level = 1
 
@@ -63,3 +63,10 @@ func handle_win():
 		global.levels_cleared += 1
 	global.trx = true
 	get_tree().change_scene_to_file("res://Scene/TileMap/LevelSelect2.tscn")
+#	var tween2 = create_tween()
+#	tween2.set_ease(Tween.EASE_IN_OUT)
+#	tween2.set_trans(Tween.TRANS_LINEAR)
+#	tween2.connect("finished", on_tween2_finished)
+#	torch.get_node("PointLight2D").enabled = false
+#	tween2.tween_property(transition_canvas, 'color', Color("ffffff"),1)
+

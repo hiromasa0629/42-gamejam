@@ -343,7 +343,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_fmxte")
 hframes = 9
 vframes = 5
-frame = 2
 
 [node name="GhostEyes2D" type="Sprite2D" parent="."]
 z_index = 1002
@@ -351,7 +350,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_b8xoc")
 hframes = 9
 vframes = 5
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
