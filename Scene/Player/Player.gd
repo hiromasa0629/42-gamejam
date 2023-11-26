@@ -19,8 +19,18 @@ signal gameover
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var match_counter = $Match
 @onready var bubble_sfx = $BubbleSFX
+@onready var tourch_animation = $TourchAnimation
+
+enum State {
+	MIDDLE,
+	SIDE
+}
+
+var current_state = State.SIDE
 
 func _ready():
+	tourch_animation.play()
+	tourch_animation.animation = "red_fire"
 	match_counter.set_count(matches_left)
 	update_animation_params(starting_direction)
 
@@ -48,11 +58,13 @@ func switch_torch_light():
 		matches_left -= 1
 		match_counter.decrement()
 		tourch_light.enabled = true
+		tourch_animation.animation = "red_fire"
 		emit_signal("playerspotted")
 	elif (tourch_light.enabled):
 		if (matches_left <= 0):
 			emit_signal("gameover")
 		tourch_light.enabled = false
+		tourch_animation.animation = "red_out"
 		emit_signal("playernotspotted")
 		
 func _on_area_2d_body_entered(body):
@@ -66,6 +78,7 @@ func _on_area_2d_body_exited(body):
 func throw():
 	if (tourch_light.enabled):
 		tourch_light.enabled = false
+		tourch_animation.animation = "red_out"
 	elif (!tourch_light.enabled):
 		matches_left -= 1
 		match_counter.decrement()
@@ -82,14 +95,30 @@ func update_animation_params(move_input: Vector2):
 	if (move_input != Vector2.ZERO):
 		state_machine.travel("Walk")
 		animation_tree.set("parameters/Walk/blend_position", move_input)
+		animation_tree.set("parameters/Idle/blend_position", move_input)
+		if (move_input.y > 0):
+			current_state = State.SIDE
+		elif (move_input.y < 0):
+			current_state = State.SIDE
+		elif (move_input == Vector2(1,0)):
+			current_state = State.MIDDLE
+		elif (move_input == Vector2(-1,0)):
+			current_state = State.MIDDLE
 		if (!$WalkSFX.playing):
 			$WalkSFX.play()
 	else:
 		state_machine.travel("Idle")
-		animation_tree.set("parameters/Idle/blend_position", move_input)
 		if ($WalkSFX.playing):
 			$WalkSFX.stop()
-		
+			
+	match current_state:
+		State.SIDE:
+			tourch_animation.position = Vector2(13, -1)
+			tourch_animation.rotation = 0.34
+		State.MIDDLE:
+			tourch_animation.position = Vector2.ZERO
+			tourch_animation.rotation = 0
+
 func _on_enemy_kill_zone_body_entered(body):
 	if (body.is_in_group("Enemy")):
 		emit_signal("gameover")
