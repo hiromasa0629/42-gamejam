@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var animation = $TorchAnimation
+@onready var torchlight = $PointLight2D
 
 @export var level: int
 
