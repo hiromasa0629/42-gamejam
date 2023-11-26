@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var move_speed: float = 120
 @export var matches_left: int = 10
+@export var BGM: AudioStreamPlayer2D
 
 @onready var tourch_light = $Area2D/PointLight2D
 
@@ -77,14 +78,14 @@ func _on_area_2d_body_entered(body):
 	check_enemy_overlapping()
 	if (body.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 1):
-#			get_tree().get_root().get_node("Main").get_node("Level1BGM").stop()
+			BGM.stop()
 			$ChasingBGM.play()
 		body.handle_player_entered()
 
 func _on_area_2d_body_exited(body):
 	if (body.is_in_group("Enemy")):
 		if (check_enemy_overlapping() == 0):
-#			get_tree().get_root().get_node("Main").get_node("Level1BGM").play()
+			BGM.play()
 			$ChasingBGM.stop()		
 		body.handle_player_exited()
 
