@@ -62,17 +62,5 @@ visible = false
 [node name="GameOver" parent="." instance=ExtResource("9_lqpmg")]
 visible = false
 
-[node name="Enemy2" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-230, 224)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-190, 354)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(211, 343)
-
-[node name="Enemy5" parent="." instance=ExtResource("3_ihmbj")]
-position = Vector2(-396, 158)
-
 [node name="WinGame" parent="." instance=ExtResource("10_3pyed")]
 visible = false
