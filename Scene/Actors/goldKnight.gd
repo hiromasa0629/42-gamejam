@@ -28,11 +28,11 @@ func update_animation_params(move_input: Vector2):
 	if (move_input != Vector2.ZERO):
 		state_machine.travel("Walk")
 		animation_tree.set("parameters/Walk/blend_position", move_input)
+		animation_tree.set("parameters/Idle/blend_position", move_input)
 		if (!$WalkSFX.playing):
 			$WalkSFX.play()
 	else:
 		state_machine.travel("Idle")
-		animation_tree.set("parameters/Idle/blend_position", move_input)
 		if ($WalkSFX.playing):
 			$WalkSFX.stop()
 	

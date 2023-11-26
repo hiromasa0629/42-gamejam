@@ -56,14 +56,30 @@ func switch_torch_light():
 		emit_signal("playernotspotted")
 		
 func _on_area_2d_body_entered(body):
+	check_enemy_overlapping()
 	if (body.is_in_group("Enemy")):
+		if (check_enemy_overlapping() == 1):
+			get_tree().get_root().get_node("Main").get_node("Level1BGM").stop()
+			$ChasingBGM.play()
 		body.handle_player_entered()
 
 func _on_area_2d_body_exited(body):
 	if (body.is_in_group("Enemy")):
+		if (check_enemy_overlapping() == 0):
+			get_tree().get_root().get_node("Main").get_node("Level1BGM").play()
+			$ChasingBGM.stop()		
 		body.handle_player_exited()
 
+func check_enemy_overlapping() -> int:
+	var count = 0
+	var bodies = $Area2D.get_overlapping_bodies();
+	for i in bodies.size():
+		if (bodies[i].is_in_group("Enemy")):
+			count += 1
+	return count
+
 func throw():
+	$ThrowSFX.play()
 	if (tourch_light.enabled):
 		tourch_light.enabled = false
 	elif (!tourch_light.enabled):

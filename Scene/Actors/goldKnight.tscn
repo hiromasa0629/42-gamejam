@@ -266,3 +266,4 @@ stream = ExtResource("4_pcpr4")
 
 [node name="WalkSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_snu6l")
+volume_db = 5.0

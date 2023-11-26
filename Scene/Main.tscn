@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://binuodjnagac5"]
+[gd_scene load_steps=14 format=3 uid="uid://binuodjnagac5"]
 
 [ext_resource type="Script" path="res://Scene/Main.gd" id="1_56sv3"]
 [ext_resource type="PackedScene" uid="uid://f45tg26w61c" path="res://Scene/Player/Player.tscn" id="1_n7ygp"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://3lgtktntrtmd" path="res://Scene/GUI/GameOverLabel.tscn" id="9_lqpmg"]
 [ext_resource type="PackedScene" uid="uid://by51f2wg82jgi" path="res://Scene/Tourch/TheRealTourch.tscn" id="10_2fpcg"]
 [ext_resource type="PackedScene" uid="uid://ddo64k16orxqv" path="res://Scene/GUI/WinGameLabel.tscn" id="10_3pyed"]
+[ext_resource type="AudioStream" uid="uid://b8yl0j4l6xhsr" path="res://Audio/BGM/Level1BGM.ogg" id="11_x7bdo"]
+[ext_resource type="AudioStream" uid="uid://dj7sv404xsrwf" path="res://Audio/Sound/GameOveSFX.wav" id="12_4buxv"]
+[ext_resource type="AudioStream" uid="uid://7e2255kd1ows" path="res://Audio/Sound/VictorySound.mp3" id="13_lkfxn"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("torch")]
 y_sort_enabled = true
@@ -76,3 +79,14 @@ position = Vector2(-396, 158)
 
 [node name="WinGame" parent="." instance=ExtResource("10_3pyed")]
 visible = false
+
+[node name="Level1BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_x7bdo")
+autoplay = true
+
+[node name="GameOverSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_4buxv")
+
+[node name="VictorySFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_lkfxn")
+volume_db = 10.0

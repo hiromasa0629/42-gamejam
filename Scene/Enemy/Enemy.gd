@@ -115,6 +115,7 @@ func handle_animation(input_direction, target, i):
 	update_animation_params(input_direction)
 	
 func start_delay_timer():
+	$EyeLightUp.play()
 	enemy_eye.enabled = true
 	chase_delay.start()
 

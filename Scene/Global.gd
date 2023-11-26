@@ -4,6 +4,7 @@ var game_is_started: bool = false
 var level_pos: Vector2
 var levels_cleared: int = 0
 var trx: bool = false
+var is_chasing_bgm_playing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
